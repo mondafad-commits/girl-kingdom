@@ -1,1 +1,92 @@
 
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#7b3fa1">
+  <title>Girl Kingdom - مملكة الفتيات</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(160deg,#fce4f3,#e8d8ff,#d9f2ff);
+      color: #49265e;
+      min-height: 100vh;
+      text-align: center;
+    }
+    header {
+      background: #773d98;
+      color: white;
+      padding: 22px 12px;
+      border-radius: 0 0 25px 25px;
+    }
+    h1 { margin: 0; font-size: 27px; }
+    .subtitle { margin-top: 9px; }
+    main { padding: 20px 14px; max-width: 650px; margin: auto; }
+    .welcome {
+      background: white;
+      padding: 22px;
+      border-radius: 22px;
+      margin-bottom: 18px;
+      box-shadow: 0 5px 18px #9977aa33;
+    }
+    .avatar { font-size: 75px; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 12px;
+    }
+    .card {
+      border: 0;
+      background: white;
+      border-radius: 20px;
+      padding: 20px 8px;
+      font-size: 16px;
+      color: #592d70;
+      box-shadow: 0 4px 12px #9977aa33;
+      cursor: pointer;
+    }
+    .card span { display: block; font-size: 38px; margin-bottom: 10px; }
+    button:active { transform: scale(.97); }
+    #message {
+      margin-top: 18px;
+      background: white;
+      border-radius: 15px;
+      padding: 16px;
+      min-height: 55px;
+    }
+    footer { padding: 22px; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>👑 Girl Kingdom</h1>
+    <div class="subtitle">مملكة الإبداع والمعرفة والمغامرات</div>
+  </header>
+  <main>
+    <section class="welcome">
+      <div class="avatar">🏰</div>
+      <h2>أهلاً بكِ في مملكتكِ!</h2>
+      <p>اكتشفي عالماً مليئاً بالتعلم والمرح والإبداع.</p>
+    </section>
+    <section class="cards">
+      <button class="card" onclick="show('عالم المغامرات قيد التجهيز!')"><span>🌍</span>عالم المغامرات</button>
+      <button class="card" onclick="show('الألعاب التعليمية قيد التجهيز!')"><span>🧩</span>الألعاب الذكية</button>
+      <button class="card" onclick="show('المكتبة الثقافية قيد التجهيز!')"><span>📚</span>مكتبتي</button>
+      <button class="card" onclick="show('المتجر قيد التجهيز!')"><span>👗</span>متجري</button>
+      <button class="card" onclick="show('المسابقات قيد التجهيز!')"><span>🏆</span>المسابقات</button>
+      <button class="card" onclick="show('المساعدة الذكية قيد التجهيز!')"><span>✨</span>المساعدة الذكية</button>
+    </section>
+    <div id="message">اختاري أحد أقسام المملكة للبدء.</div>
+  </main>
+  <footer>Girl Kingdom © 2026</footer>
+  <script>
+    function show(message) {
+      document.getElementById('message').textContent = message;
+    }
+  </script>
+</body>
+</html>
+
