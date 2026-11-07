@@ -2,91 +2,115 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#7b3fa1">
-  <title>Girl Kingdom - مملكة الفتيات</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(160deg,#fce4f3,#e8d8ff,#d9f2ff);
-      color: #49265e;
-      min-height: 100vh;
-      text-align: center;
-    }
-    header {
-      background: #773d98;
-      color: white;
-      padding: 22px 12px;
-      border-radius: 0 0 25px 25px;
-    }
-    h1 { margin: 0; font-size: 27px; }
-    .subtitle { margin-top: 9px; }
-    main { padding: 20px 14px; max-width: 650px; margin: auto; }
-    .welcome {
-      background: white;
-      padding: 22px;
-      border-radius: 22px;
-      margin-bottom: 18px;
-      box-shadow: 0 5px 18px #9977aa33;
-    }
-    .avatar { font-size: 75px; }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(2,1fr);
-      gap: 12px;
-    }
-    .card {
-      border: 0;
-      background: white;
-      border-radius: 20px;
-      padding: 20px 8px;
-      font-size: 16px;
-      color: #592d70;
-      box-shadow: 0 4px 12px #9977aa33;
-      cursor: pointer;
-    }
-    .card span { display: block; font-size: 38px; margin-bottom: 10px; }
-    button:active { transform: scale(.97); }
-    #message {
-      margin-top: 18px;
-      background: white;
-      border-radius: 15px;
-      padding: 16px;
-      min-height: 55px;
-    }
-    footer { padding: 22px; font-size: 13px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#713b91">
+<title>Girl Kingdom</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#d9eafa;color:#48265f;overflow:hidden}
+header{height:65px;background:#713b91;color:white;display:flex;justify-content:space-between;align-items:center;padding:10px 16px}
+header h2{font-size:20px;margin:0}
+.coins{background:#ffffff30;padding:9px 13px;border-radius:20px}
+#world{height:calc(100dvh - 65px);position:relative;overflow:hidden;background:linear-gradient(#9cddf4 0%,#d8f4ff 58%,#79bd78 58%,#43965c 100%)}
+.sun{position:absolute;top:35px;left:30px;font-size:55px}
+.cloud{position:absolute;top:70px;right:12%;font-size:45px}
+.castle{position:absolute;top:30%;left:50%;transform:translateX(-50%);font-size:105px;filter:drop-shadow(0 5px 4px #5555)}
+.tree{position:absolute;top:54%;font-size:55px}
+.tree.one{left:8%}.tree.two{right:9%}.tree.three{left:72%;top:70%}
+.path{position:absolute;width:120px;height:100%;background:#d7bb8d;left:50%;transform:translateX(-50%);opacity:.8;clip-path:polygon(35% 0,65% 0,100% 100%,0 100%)}
+#player{position:absolute;z-index:4;bottom:18%;left:50%;transform:translateX(-50%);font-size:53px;transition:left .12s,bottom .12s;filter:drop-shadow(0 4px 3px #555)}
+.building{position:absolute;z-index:2;background:#fff0fc;border:4px solid #b77bc8;border-radius:15px;padding:12px 5px;text-align:center;font-size:13px;width:90px;box-shadow:0 5px 9px #3455}
+.shop{left:5%;top:65%}.school{right:5%;top:65%}
+.building b{font-size:30px;display:block}
+.hud{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;pointer-events:none}
+.hud span{background:#fff;padding:8px 12px;border-radius:20px;font-size:12px}
+.controls{position:absolute;bottom:15px;left:50%;transform:translateX(-50%);display:grid;grid-template-columns:55px 55px 55px;gap:5px;z-index:10}
+.controls button{height:52px;border:0;border-radius:15px;background:#713b91;color:white;font-size:23px;touch-action:none}
+.controls button:active{background:#a66ac0}
+.action{position:absolute;bottom:25px;right:15px;z-index:10;background:#f5c75b;border:0;border-radius:50%;width:65px;height:65px;font-size:26px}
+.overlay{position:absolute;inset:0;background:#24102dcc;z-index:20;display:flex;align-items:center;justify-content:center;padding:20px}
+.panel{background:white;border-radius:24px;padding:25px;width:100%;max-width:360px;text-align:center}
+.panel button{background:#713b91;color:white;border:0;border-radius:14px;padding:13px 25px;font-size:17px;margin:5px}
+.hidden{display:none!important}
+#toast{position:absolute;top:75px;left:50%;transform:translateX(-50%);background:white;border-radius:15px;padding:12px;z-index:15;display:none;white-space:nowrap}
+</style>
 </head>
 <body>
-  <header>
-    <h1>👑 Girl Kingdom</h1>
-    <div class="subtitle">مملكة الإبداع والمعرفة والمغامرات</div>
-  </header>
-  <main>
-    <section class="welcome">
-      <div class="avatar">🏰</div>
-      <h2>أهلاً بكِ في مملكتكِ!</h2>
-      <p>اكتشفي عالماً مليئاً بالتعلم والمرح والإبداع.</p>
-    </section>
-    <section class="cards">
-      <button class="card" onclick="show('عالم المغامرات قيد التجهيز!')"><span>🌍</span>عالم المغامرات</button>
-      <button class="card" onclick="show('الألعاب التعليمية قيد التجهيز!')"><span>🧩</span>الألعاب الذكية</button>
-      <button class="card" onclick="show('المكتبة الثقافية قيد التجهيز!')"><span>📚</span>مكتبتي</button>
-      <button class="card" onclick="show('المتجر قيد التجهيز!')"><span>👗</span>متجري</button>
-      <button class="card" onclick="show('المسابقات قيد التجهيز!')"><span>🏆</span>المسابقات</button>
-      <button class="card" onclick="show('المساعدة الذكية قيد التجهيز!')"><span>✨</span>المساعدة الذكية</button>
-    </section>
-    <div id="message">اختاري أحد أقسام المملكة للبدء.</div>
-  </main>
-  <footer>Girl Kingdom © 2026</footer>
-  <script>
-    function show(message) {
-      document.getElementById('message').textContent = message;
-    }
-  </script>
+<header>
+<h2>👑 Girl Kingdom</h2>
+<div class="coins">⭐ <span id="coins">0</span></div>
+</header>
+<div id="world">
+<div class="sun">☀️</div><div class="cloud">☁️</div>
+<div class="path"></div>
+<div class="castle">🏰</div>
+<div class="tree one">🌳</div><div class="tree two">🌳</div><div class="tree three">🌲</div>
+<div class="building shop" onclick="openPlace('المتجر','هنا ستتمكنين من اختيار الملابس والأثاث لشخصيتك.')"><b>👗</b>المتجر</div>
+<div class="building school" onclick="openPlace('مدرسة المعرفة','هنا ستجدين دروساً وألعاباً تعليمية.')"><b>🏫</b>المدرسة</div>
+<div id="player">👧</div>
+<div class="hud"><span>🌸 مرحباً بكِ في مملكتك</span><span>المستوى 1</span></div>
+<div id="toast"></div>
+<div class="controls">
+<button onclick="move(0,1)">⬆️</button><button onclick="move(-1,0)">⬅️</button><button onclick="move(0,-1)">➡️</button>
+<button onclick="move(0,-1)">⬇️</button><button onclick="move(0,1)">🌸</button><button onclick="move(0,0)">✨</button>
+</div>
+<button class="action" onclick="collect()">⭐</button>
+<div id="welcome" class="overlay">
+<div class="panel">
+<div style="font-size:65px">🏰</div>
+<h2>أهلاً بكِ في Girl Kingdom</h2>
+<p>اكتشفي مملكتكِ واجمعي النجوم وتعلمي أشياء جديدة!</p>
+<button onclick="start()">دخول المملكة ✨</button>
+</div>
+</div>
+<div id="place" class="overlay hidden">
+<div class="panel">
+<h2 id="placeTitle"></h2>
+<p id="placeText"></p>
+<button onclick="closePlace()">عودة إلى المملكة</button>
+</div>
+</div>
+</div>
+<script>
+let x=50,y=18,coins=0;
+const player=document.getElementById('player');
+function update(){
+player.style.left=x+'%';
+player.style.bottom=y+'%';
+}
+function move(dx,dy){
+x=Math.max(8,Math.min(92,x+dx*4));
+y=Math.max(5,Math.min(75,y+dy*4));
+update();
+}
+function start(){document.getElementById('welcome').classList.add('hidden');message('أهلاً بكِ! تحركي لاستكشاف المملكة 🌸')}
+function message(t){
+let el=document.getElementById('toast');
+el.textContent=t;el.style.display='block';
+clearTimeout(window.toastTimer);
+window.toastTimer=setTimeout(()=>el.style.display='none',2500);
+}
+function collect(){
+coins+=1;
+document.getElementById('coins').textContent=coins;
+message('رائع! حصلتِ على نجمة ⭐');
+}
+function openPlace(name,desc){
+document.getElementById('placeTitle').textContent=name;
+document.getElementById('placeText').textContent=desc;
+document.getElementById('place').classList.remove('hidden');
+}
+function closePlace(){document.getElementById('place').classList.add('hidden')}
+document.addEventListener('keydown',e=>{
+if(e.key==='ArrowUp')move(0,1);
+if(e.key==='ArrowDown')move(0,-1);
+if(e.key==='ArrowLeft')move(-1,0);
+if(e.key==='ArrowRight')move(1,0);
+});
+update();
+</script>
 </body>
 </html>
+
 
